@@ -19,4 +19,5 @@ docker run -p 14500:14500 --name wireshark --privileged -e XPRA_PW=wireshark ffe
 ```
 
 Access Wireshark via the browser using the IP/Hostname of your docker host using e.g.
-https://<yourhostname>:14500/?username=wireshark=password=wireshark
+
+    https://<yourhostname>:14500/?username=wireshark=password=wireshark
