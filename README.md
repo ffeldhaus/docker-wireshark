@@ -11,7 +11,7 @@ By default, the container uses a self-signed certificate to offer SSL.
 By default, Wireshark can only be accessed using a password. The default password is `wireshark`, but can be changed by setting the environment variable XPRA_PW.
 
 ```bash
-docker run -p 14500:14500 --name wireshark --sec-add NET_ADMIN -e XPRA_PW=wireshark ffeldhaus/wireshark
+docker run -p 14500:14500 --name wireshark --cap-add NET_ADMIN -e XPRA_PW=wireshark ffeldhaus/wireshark
 ```
 
 ```bash
