@@ -1,6 +1,6 @@
 FROM debian:stretch-slim
 
-LABEL version="0.1"
+LABEL version="0.2"
 LABEL maintainer="florian.feldhaus@gmail.com"
 
 ARG DEBIAN_FRONTEND=noninteractive
