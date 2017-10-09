@@ -14,6 +14,7 @@ RUN echo "deb http://winswitch.org/ stretch main" > /etc/apt/sources.list.d/wins
 # install wireshark and xpra to make wirehsark available via websocket
 RUN apt-get update
 RUN apt-get install -y xpra wireshark
+RUN apt-get install -y dbus-x11
 
 # allow non-root users to capture network traffic
 RUN setcap 'CAP_NET_RAW+eip CAP_NET_ADMIN+eip' /usr/bin/dumpcap
