@@ -1,6 +1,6 @@
 FROM debian:stretch-slim
 
-LABEL version="0.2"
+LABEL version="0.3"
 LABEL maintainer="florian.feldhaus@gmail.com"
 
 ARG DEBIAN_FRONTEND=noninteractive
@@ -8,13 +8,13 @@ ARG DEBIAN_FRONTEND=noninteractive
 # add winswitch repository to install Xpra
 RUN apt-get update
 RUN apt-get install gnupg curl -y
-RUN curl http://winswitch.org/gpg.asc | apt-key add -
-RUN echo "deb http://winswitch.org/ stretch main" > /etc/apt/sources.list.d/winswitch.list;
+RUN curl http://xpra.org/gpg.asc | apt-key add -
+RUN echo "deb http://xpra.org/beta/ stretch main" > /etc/apt/sources.list.d/xpra.list;
+RUN echo "deb http://xpra.org/ stretch main" >> /etc/apt/sources.list.d/xpra.list;
 
 # install wireshark and xpra to make wirehsark available via websocket
 RUN apt-get update
-RUN apt-get install -y xpra wireshark
-RUN apt-get install -y dbus-x11
+RUN apt-get install -y --no-install-recommends xpra wireshark websockify libjs-jquery
 
 # allow non-root users to capture network traffic
 RUN setcap 'CAP_NET_RAW+eip CAP_NET_ADMIN+eip' /usr/bin/dumpcap
