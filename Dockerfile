@@ -1,6 +1,6 @@
-FROM debian:stretch-slim
+FROM debian:bullseye-slim
 
-LABEL version="0.3"
+LABEL version="0.4"
 LABEL maintainer="florian.feldhaus@gmail.com"
 
 ARG DEBIAN_FRONTEND=noninteractive
@@ -9,12 +9,11 @@ ARG DEBIAN_FRONTEND=noninteractive
 RUN apt-get update
 RUN apt-get install gnupg curl -y
 RUN curl http://xpra.org/gpg.asc | apt-key add -
-RUN echo "deb http://xpra.org/beta/ stretch main" > /etc/apt/sources.list.d/xpra.list;
-RUN echo "deb http://xpra.org/ stretch main" >> /etc/apt/sources.list.d/xpra.list;
+RUN echo "deb http://xpra.org/ bullseye main" >> /etc/apt/sources.list.d/xpra.list;
 
-# install wireshark and xpra to make wirehsark available via websocket
+# install wireshark and xpra to make wireshark available via websocket
 RUN apt-get update
-RUN apt-get install -y --no-install-recommends xpra wireshark websockify libjs-jquery
+RUN apt-get install -y --no-install-recommends software-properties-common python3-xpra xpra xpra-html5 websockify wireshark
 
 # allow non-root users to capture network traffic
 RUN setcap 'CAP_NET_RAW+eip CAP_NET_ADMIN+eip' /usr/bin/dumpcap
