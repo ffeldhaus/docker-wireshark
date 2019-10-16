@@ -13,10 +13,13 @@ RUN echo "deb http://xpra.org/ bullseye main" >> /etc/apt/sources.list.d/xpra.li
 
 # install wireshark and xpra to make wireshark available via websocket
 RUN apt-get update
-RUN apt-get install -y --no-install-recommends software-properties-common python3-xpra xpra xpra-html5 websockify wireshark
+RUN apt-get install -y --no-install-recommends software-properties-common python3-xpra xpra xauth xpra-html5 websockify wireshark
 
 # allow non-root users to capture network traffic
 RUN setcap 'CAP_NET_RAW+eip CAP_NET_ADMIN+eip' /usr/bin/dumpcap
+
+# ensure that wireshark is using text mode for best display quality in HTML5 client
+RUN echo -e "\nclass-instance:wireshark=text" >> /usr/share/xpra/content-type/50_class.conf
 
 # copy xpra config file
 COPY ./xpra.conf /etc/xpra/xpra.conf
@@ -29,13 +32,13 @@ ENTRYPOINT ["/docker-entrypoint.sh"]
 RUN mkdir -p /run/user/1000/xpra
 RUN chown -R 1000 /run/user/1000
 
+# allow wireshark user to read default certificate
+RUN chmod 644 /etc/xpra/ssl-cert.pem
+
 # add wireshark user
 RUN useradd --create-home --shell /bin/bash wireshark --groups xpra --uid 1000
 USER wireshark
 WORKDIR /home/wireshark
-
-# create self-signed SSL certificate and key
-RUN openssl req -x509 -newkey rsa:4096 -keyout key.pem -out cert.pem -days 365 --nodes -subj "/CN=example.org"
 
 # expose xpra default port
 EXPOSE 14500
@@ -44,4 +47,4 @@ EXPOSE 14500
 ENV XPRA_PW wireshark
 
 # run xpra, options --daemon and --no-printing only work if specified as parameters to xpra start
-CMD ["/usr/bin/xpra","start","--daemon=no","--no-printing"]
+CMD ["/usr/bin/xpra","start","--daemon=no"]
