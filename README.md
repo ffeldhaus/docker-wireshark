@@ -1,4 +1,4 @@
-# docker-wireshark
+# Wireshark Web Container Image
 
 Docker image which makes Wireshark available via Web browser using XPRA.
 
