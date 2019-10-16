@@ -34,7 +34,7 @@ docker run -p 14500:14500 --restart unless-stopped --name wireshark --privileged
 To allow analyzing traffic of netwrok devices, change the password to connect and provide a custom SSL certificate, use
 
 ```bash
-run -p 14500:14500 --restart unless-stopped --name wireshark --cap-add NET_ADMIN -e XPRA_PW=mypassword --mount type=bind,source="$(pwd)"/ssl-cert.pem,target=/etc/xpra/ssl-cert.pem,readonly ffeldhaus/wireshark
+docker run -p 14500:14500 --restart unless-stopped --name wireshark --cap-add NET_ADMIN -e XPRA_PW=mypassword --mount type=bind,source="$(pwd)"/ssl-cert.pem,target=/etc/xpra/ssl-cert.pem,readonly ffeldhaus/wireshark
 ```
 
 Access Wireshark via the browser using the IP/Hostname of your docker host and providing username and password (change password=wireshark if you provided a different password) using e.g.
