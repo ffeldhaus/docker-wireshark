@@ -39,11 +39,11 @@ docker run -p 14500:14500 --restart unless-stopped --name wireshark --cap-add NE
 
 Access Wireshark via the browser using the IP/Hostname of your docker host and providing username and password (change password=wireshark if you provided a different password) using e.g.
 
-    https://<yourhostname>:14500/?username=wireshark=password=wireshark
+    https://<yourhostname>:14500/?username=wireshark&password=wireshark
 
 If you want to allow to share your session, use
 
-    https://<yourhostname>:14500/?username=wireshark=password=wireshark&sharing=true
+    https://<yourhostname>:14500/?username=wireshark&password=wireshark&sharing=true
 
 ## Acknowledgements
 
