@@ -12,6 +12,8 @@ By default, the container uses the default self-signed certificate to offer SSL.
 
 By default, Wireshark can only be accessed using a password. The default password is `wireshark`, but can be changed by setting the environment variable XPRA_PASSWORD.
 
+Existing network traces can be uploaded to the container by drag & drop onto the wireshark window.
+
 It is useful to automatically restart the container on failures using the `--restart unless-stopped` parameter.
 
 If you only want to analyze existing network traces and not collect data from network interfaces, use
