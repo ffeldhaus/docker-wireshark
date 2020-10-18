@@ -10,9 +10,9 @@ By default it should be sufficient to use the parameter `--sec-add NET_ADMIN` to
 
 By default, the container uses the default self-signed certificate to offer SSL. If you want to specify your own certificate, you can overwrite the default SSL certificate with the docker parameter similar to `--mount type=bind,source="$(pwd)"/ssl-cert.pem,target=/etc/xpra/ssl-cert.pem,readonly` (make sure to put the ssl-cert.pem file in the current folder or modify the source path).
 
-By default, Wireshark can only be accessed using a password. The default password is `wireshark`, but can be changed by setting the environment variable XPRA_PASSWORD.
+By default, Wireshark can only be accessed using a password. The default password is `wireshark`, but can be changed by setting the environment variable `XPRA_PASSWORD`.
 
-Existing network traces can be uploaded to the container by drag & drop onto the wireshark window.
+Existing network traces can be uploaded to the container by drag & drop onto the Wireshark window.
 
 It is useful to automatically restart the container on failures using the `--restart unless-stopped` parameter.
 
@@ -39,13 +39,13 @@ To allow analyzing traffic of netwrok devices, change the password to connect an
 docker run -p 14500:14500 --restart unless-stopped --name wireshark --cap-add NET_ADMIN -e XPRA_PASSWORD=mypassword --mount type=bind,source="$(pwd)"/ssl-cert.pem,target=/etc/xpra/ssl-cert.pem,readonly ffeldhaus/wireshark
 ```
 
-Access Wireshark via the browser using the IP/Hostname of your docker host and providing username and password (change password=wireshark if you provided a different password) using e.g.
+Access Wireshark via the browser using the IP/Hostname of your docker host, disable the XPRA floating menu with `floating_menu=false` and provide the password (change `password=wireshark` if you provided a different password via `XPRA_PASSWORD`) using e.g.
 
-    https://<yourhostname>:14500/?password=wireshark
+    https://<yourhostname>:14500/?floating_menu=false&password=wireshark
 
 If you want to allow to share your session, use
 
-    https://<yourhostname>:14500/?password=wireshark&sharing=true
+    https://<yourhostname>:14500/?floating_menu=false&password=wireshark&sharing=true
 
 ## Acknowledgements
 
