@@ -1,4 +1,4 @@
-FROM ffeldhaus/docker-xpra-html5-minimal
+FROM ffeldhaus/xpra-html5-minimal
 
 LABEL version="1.0"
 LABEL maintainer="florian.feldhaus@gmail.com"
