@@ -1,6 +1,6 @@
-FROM ffeldhaus/xpra-html5-minimal
+FROM ffeldhaus/xpra-html5-minimal:beta
 
-LABEL version="1.0"
+LABEL version="beta"
 LABEL maintainer="florian.feldhaus@gmail.com"
 
 # skip interactive configuration dialogs

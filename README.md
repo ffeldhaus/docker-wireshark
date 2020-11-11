@@ -1,5 +1,7 @@
 # Wireshark Web Container Image
 
+*Note: This is a beta branch which is using the latest Ubuntu and Xpra Beta releases*
+
 Docker image which makes Wireshark available via Web browser using XPRA.
 
 ## Usage
